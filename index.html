@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Supermarket Calculator</title>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#c62828"> <!-- vermelho vibrante -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#c62828" />
   <style>
     * {
       box-sizing: border-box;
@@ -13,7 +13,7 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #d7b899; /* castanho claro tipo madeira */
+      background-color: #d7b899; /* fundo castanho claro tipo madeira */
       margin: 0;
       padding: 20px;
       display: flex;
@@ -48,7 +48,7 @@
       text-align: center;
       margin-bottom: 20px;
       outline: none;
-      background-color: #efebe9; /* neutro claro */
+      background-color: #efebe9;
       color: #3e2723;
     }
 
@@ -89,14 +89,15 @@
       id="inputValue"
       placeholder="Enter a value"
       step="0.01"
-      oninput="calculate()">
+      oninput="calculate()" />
     <div class="result" id="result"></div>
     <div class="footer">Created by DDUDDU550</div>
   </div>
 
   <script>
     function calculate() {
-      const value = parseFloat(document.getElementById('inputValue').value);
+      const raw = document.getElementById('inputValue').value;
+      const value = parseFloat(raw.replace(',', '.'));
       const resultDiv = document.getElementById('result');
 
       if (!isNaN(value)) {
