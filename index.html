@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora Supermarket</title>
+  <title>Supermarket Calculator</title>
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#28a745">
+  <meta name="theme-color" content="#c62828"> <!-- vermelho vibrante -->
   <style>
     * {
       box-sizing: border-box;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #d7b899; /* castanho claro tipo madeira */
       margin: 0;
       padding: 20px;
       display: flex;
@@ -23,27 +23,45 @@
       min-height: 100vh;
     }
 
-    h1 {
-      color: #2c3e50;
-      font-size: 1.8rem;
+    .container {
+      background-color: #c62828; /* vermelho vibrante */
+      padding: 30px 20px;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      max-width: 350px;
+      width: 100%;
       text-align: center;
-      margin-bottom: 30px;
+      color: white;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
     }
 
     input {
       padding: 12px;
       font-size: 1rem;
       width: 100%;
-      max-width: 300px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      border-radius: 10px;
+      border: none;
       text-align: center;
+      margin-bottom: 20px;
+      outline: none;
+      background-color: #efebe9; /* neutro claro */
+      color: #3e2723;
     }
 
     .result {
-      margin-top: 20px;
-      font-size: 1.5rem;
-      color: #333;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ffe082; /* amarelo claro */
+    }
+
+    .footer {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #f8bbd0; /* rosado claro */
     }
 
     @media (max-width: 480px) {
@@ -54,34 +72,46 @@
       .result {
         font-size: 1.2rem;
       }
+
+      .footer {
+        font-size: 0.8rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Calculadora Supermarket</h1>
 
-  <input type="number" id="inputValue" placeholder="Insira um valor" step="0.01" oninput="calcular()">
-  
-  <div class="result" id="resultado"></div>
+  <div class="container">
+    <h1>Supermarket Calculator</h1>
+    <input
+      type="number"
+      inputmode="decimal"
+      id="inputValue"
+      placeholder="Enter a value"
+      step="0.01"
+      oninput="calculate()">
+    <div class="result" id="result"></div>
+    <div class="footer">Created by DDUDDU550</div>
+  </div>
 
   <script>
-    function calcular() {
-      const valor = parseFloat(document.getElementById('inputValue').value);
-      const resultadoDiv = document.getElementById('resultado');
+    function calculate() {
+      const value = parseFloat(document.getElementById('inputValue').value);
+      const resultDiv = document.getElementById('result');
 
-      if (!isNaN(valor)) {
-        const resultado = (valor * 2) - 0.40;
-        resultadoDiv.textContent = `Resultado: € ${resultado.toFixed(2)}`;
+      if (!isNaN(value)) {
+        const result = (value * 2) - 0.40;
+        resultDiv.textContent = `Result: ${result.toFixed(2)}`;
       } else {
-        resultadoDiv.textContent = '';
+        resultDiv.textContent = '';
       }
     }
 
-    // Registar o service worker
+    // Register Service Worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
-        .then(reg => console.log('✅ Service Worker registado!', reg))
-        .catch(err => console.error('❌ Erro ao registar SW:', err));
+        .then(reg => console.log('✅ Service Worker registered!', reg))
+        .catch(err => console.error('❌ Error registering SW:', err));
     }
   </script>
 </body>
